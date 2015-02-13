@@ -13,8 +13,9 @@ int main()
     sf::Sprite background;
     sf::Texture b;
     sf::CircleShape circle(10);
-    int x = 5,x1 = 0;
-    if (!b.loadFromFile("test.png")){
+    float x = 5,x1 = 0,y = 320, y1 = 0, gravity = 0;
+    bool tf = true;
+    if (!b.loadFromFile("scrollingtest.png")){
 
     }
     circle.setPosition(5,325);
@@ -29,8 +30,8 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-        window.clear(sf::Color::White);
-        background.setPosition(x1,0);
+        window.clear(sf::Color::Black);
+        background.setPosition(x1,y1);
         window.draw(background);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) and x > 200){
             x--;
@@ -44,7 +45,17 @@ int main()
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) and x >= 800){
             x1--;
         }
-        circle.setPosition(x,320);
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
+            y-=5;
+        }
+        if (y < 320){
+            y+=gravity;
+            gravity+=.01;
+        }
+        if (y == 320){
+            gravity = 0;
+        }
+        circle.setPosition(x,y);
         window.draw(circle);
         window.display();
     }
