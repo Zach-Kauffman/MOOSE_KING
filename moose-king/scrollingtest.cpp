@@ -14,7 +14,7 @@ int main()
     sf::Texture b;
     sf::CircleShape circle(10);
     float x = 5,x1 = 0,y = 320, y1 = 0, gravity = 0;
-    bool tf = true;
+    bool up = false;
     if (!b.loadFromFile("scrollingtest.png")){
 
     }
@@ -45,15 +45,24 @@ int main()
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) and x >= 800){
             x1--;
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-            y-=5;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) and y == 320){
+            gravity = -2;
+            up = true;
         }
-        if (y < 320){
+        if (up == true and y > 270){
             y+=gravity;
             gravity+=.01;
         }
-        if (y == 320){
+        if (y <= 270){
+            up = false;
+        }
+        if (y < 320 and up == false){
+            y+=gravity;
+            gravity+=.01;
+        }
+        if (y >= 320){
             gravity = 0;
+            y = 320;
         }
         circle.setPosition(x,y);
         window.draw(circle);
