@@ -16,7 +16,7 @@ int main()
     sf::RectangleShape platform(sf::Vector2f(30,5));
 
     float x = 500,x1 = 0,y = 0, y1 = 0, gravity = 0,recx = 200,recy = 200;
-    bool up = false, ground = true;
+    bool jump = false, ground = true, down = true;
     if (!b.loadFromFile("scrollingtest.png")){
 
     }
@@ -36,38 +36,38 @@ int main()
         }
         window.clear(sf::Color::Black);
         background.setPosition(x1,y);
+        platform.setPosition(sf::Vector2f(recx,recy));
         window.draw(background);
 //        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) and x > 200){
 //            x--;
 //        }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) and x1 <=500){
             x1++;
+            recx++;
         }
 //        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) and x < 800){
 //            x++;
 //        }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) and x1 >= -1500){
             x1--;
+            recx--;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) and ground == true){
-            gravity = -2;
-            up = true;
+            gravity = 2;
+            jump = true;
             ground = false;
+            down = false;
         }
-        if (up == true and y > -50){
-            y-=gravity;
-            gravity+=.01;
-        }
-        if (y <= -50){
-            up = false;
-        }
-        if (y < 5 and up == false){
+        if (jump == true){
             y+=gravity;
-            gravity+=.01;
+            gravity-=.01;
         }
-        if (y >= 5){
-            gravity = 0;
+        if (y >= 50){
+            down = true;
+        }
+        if (y <= 5 and down == true){
             y = 5;
+            jump = false;
             ground = true;
         }
         circle.setPosition(x,325);
