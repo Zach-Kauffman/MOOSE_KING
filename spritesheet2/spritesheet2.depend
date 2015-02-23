@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1424456040 source:c:\users\kyle\documents\moose kings\spritesheet2\main.cpp
+	<SFML/Graphics.hpp>
+	<string>
+	<iostream>
+
