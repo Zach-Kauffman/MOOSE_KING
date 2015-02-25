@@ -6,16 +6,16 @@ using namespace std;
 
 int main()
 {
-    enum Direction {Down, Left, Right, Up, Idle};
+    enum Direction {Left, Right,Idle};
 
-    int sourceX = 32, sourceY = Down;
-    float x=200, y=200;
+    int sourceX = 32, sourceY = Right;
+    float x=100, y=245;
 
-    sf::Vector2i source(32, Down);
+    sf::Vector2i source(32, Right);
     source.x = 10;
 
     sf::RenderWindow Window;
-    Window.create(sf::VideoMode(640, 480), "Sprite Sheet");
+    Window.create(sf::VideoMode(480, 320), "Sprite Sheet");
 
     Window.setKeyRepeatEnabled(false);
 
@@ -28,7 +28,7 @@ int main()
     if(!pTexture.loadFromFile("player2.png"))
         std::cout << "ERROR" << std::endl;
 
-    if(!backg.loadFromFile("back.png"))
+    if(!backg.loadFromFile("bg.png"))
         std::cout << "ERROR" << std::endl;
 
     playerImage.setTexture(pTexture);
@@ -43,19 +43,7 @@ int main()
             break;
             }
         }
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-                {
-                source.y = Up;
-                y-=.1;
-                cout << y << endl;
-                }
-            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-                {
-                source.y= Down;
-                y+=.1;
-                cout << y << endl;
-                }
-            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
                 {
                 source.y= Right;
                 x+=.1;
@@ -70,6 +58,7 @@ int main()
             else {
                 source.y = Idle;
             }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) or sf::Keyboard::isKeyPressed(sf::Keyboard::Down) or sf::Keyboard::isKeyPressed(sf::Keyboard::Right) or sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         source.x++;
         if(source.x*32>=pTexture.getSize().x)
         {
@@ -80,6 +69,7 @@ int main()
         Window.draw(background);
         Window.draw(playerImage);
         Window.display();
+
         Window.clear();
     }
     return 0;
