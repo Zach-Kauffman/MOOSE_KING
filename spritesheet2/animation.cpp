@@ -6,16 +6,18 @@ using namespace std;
 
 int main()
 {
-    enum Direction {Left, Right,Idle};
+    enum Direction {Left, Right};
 
     int sourceX = 32, sourceY = Right;
-    float x=100, y=245;
+    float x=100, y=245, gravity = 0;
+    bool ground = true,jump = false,down = true;
 
     sf::Vector2i source(32, Right);
     source.x = 10;
 
     sf::RenderWindow Window;
     Window.create(sf::VideoMode(480, 320), "Sprite Sheet");
+    Window.setFramerateLimit(240);
 
     Window.setKeyRepeatEnabled(false);
 
@@ -46,18 +48,40 @@ int main()
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
                 {
                 source.y= Right;
-                x+=.1;
+                x+=1;
                 cout << x << endl;
                 }
             else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
                 {
                 source.y= Left;
-                x-=.1;
+                x-=1;
                 cout << x << endl;
                 }
-            else {
-                source.y = Idle;
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) and ground == true)
+            {
+                gravity = -2;
+                ground = false;
+                jump = true;
+                down = false;
             }
+            if (jump == true and down == false)
+            {
+                y+=gravity;
+                gravity+=.015;
+            }
+            if (down == false and gravity > 0){
+            down = true;
+            }
+            if (jump == true and down == true){
+                y-=gravity;
+                gravity-=.015;
+            }
+            if (y >= 245 and down == true){
+                y = 245;
+                jump = false;
+                ground = true;
+            }
+
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) or sf::Keyboard::isKeyPressed(sf::Keyboard::Down) or sf::Keyboard::isKeyPressed(sf::Keyboard::Right) or sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         source.x++;
         if(source.x*32>=pTexture.getSize().x)
