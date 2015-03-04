@@ -6,11 +6,13 @@ using namespace std;
 
 int main()
 {
-    enum Direction {Left, Right};
+
+    enum Direction {Left, Right,nothing, Jump};
 
     int sourceX = 32, sourceY = Right;
     float x=100, y=245, gravity = 0;
     bool ground = true,jump = false,down = true;
+    int c = 0;
 
     sf::Vector2i source(32, Right);
     source.x = 10;
@@ -27,7 +29,7 @@ int main()
     sf::Texture backg;
     sf::Sprite background;
 
-    if(!pTexture.loadFromFile("player2.png"))
+    if(!pTexture.loadFromFile("player3.png"))
         std::cout << "ERROR" << std::endl;
 
     if(!backg.loadFromFile("bg.png"))
@@ -63,11 +65,14 @@ int main()
                 ground = false;
                 jump = true;
                 down = false;
+                source.y = nothing;
+
             }
             if (jump == true and down == false)
             {
                 y+=gravity;
                 gravity+=.015;
+
             }
             if (down == false and gravity > 0){
             down = true;
@@ -75,11 +80,13 @@ int main()
             if (jump == true and down == true){
                 y-=gravity;
                 gravity-=.015;
+
             }
             if (y >= 245 and down == true){
                 y = 245;
                 jump = false;
                 ground = true;
+
             }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) or sf::Keyboard::isKeyPressed(sf::Keyboard::Down) or sf::Keyboard::isKeyPressed(sf::Keyboard::Right) or sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
