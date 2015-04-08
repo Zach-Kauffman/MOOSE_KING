@@ -6,18 +6,21 @@ using namespace std;
 
 int main()
 {
-    enum Direction {Left, Right};
 
-    int sourceX = 32, sourceY = Right;
-    float x=100, y=245, gravity = 0;
-    bool ground = true,jump = false,down = true;
+    enum Direction {IdleRight, IdleLeft, Right, Left, Jump};
 
-    sf::Vector2i source(32, Right);
+    int sourceX = 64, sourceY = Right;
+    float x=500, y=320, gravity = 0;
+    float x1=0 , y1=0;
+    bool ground = true,jump = false,down = true, scroll = false;
+    int c = 0;
+
+    sf::Vector2i source(64, Right);
     source.x = 10;
 
     sf::RenderWindow Window;
-    Window.create(sf::VideoMode(480, 320), "Sprite Sheet");
-    Window.setFramerateLimit(240);
+    Window.create(sf::VideoMode(1000, 400), "Sprite Sheet");
+    Window.setFramerateLimit(10);
 
     Window.setKeyRepeatEnabled(false);
 
@@ -27,14 +30,26 @@ int main()
     sf::Texture backg;
     sf::Sprite background;
 
-    if(!pTexture.loadFromFile("player2.png"))
-        std::cout << "ERROR" << std::endl;
+    sf::Texture platformTexture
+    sf::Sprite platform;
 
-    if(!backg.loadFromFile("bg.png"))
+    if(!pTexture.loadFromFile("playerBigSpritesheet.png")) {
         std::cout << "ERROR" << std::endl;
+    }
+
+    if(!backg.loadFromFile("scrollingtest.png")) {
+        std::cout << "ERROR" << std::endl;
+    }
+
+    if(!platformTexture.loadFromFile("platform.png")) {
+        std::cout << "ERROR" << std::endl;
+    }
 
     playerImage.setTexture(pTexture);
+    playerImage.setPosition(5,325);
     background.setTexture(backg);
+    background.setPosition(x1,0);
+    platform.setTexture()
 
     while(Window.isOpen())
     {
@@ -45,18 +60,36 @@ int main()
             break;
             }
         }
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+            background.setPosition(x1,0);
+            Window.draw(background);
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) and x < 800)
                 {
                 source.y= Right;
-                x+=1;
+                x+=10;
                 cout << x << endl;
                 }
-            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) and x >= 800 and x1 >= -1000)
                 {
-                source.y= Left;
-                x-=1;
+                source.y= Right;
+                x1-=10;
                 cout << x << endl;
                 }
+
+//                if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)and x > 200)
+//                {
+//                source.y= Left;
+//                x-=10;
+//                cout << x << endl;
+//                }
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) and x1 == 0){
+                        source.y = Left;
+                x-= 10;
+                }
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) and x <= 200 and x1 <= 0){
+                x1+= 10;
+                scroll = true;
+                }
+
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) and ground == true)
             {
                 gravity = -2;
@@ -75,22 +108,22 @@ int main()
             if (jump == true and down == true){
                 y-=gravity;
                 gravity-=.015;
+
             }
-            if (y >= 245 and down == true){
-                y = 245;
+            if (y >= 320 and down == true){
+                y = 320;
                 jump = false;
                 ground = true;
             }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) or sf::Keyboard::isKeyPressed(sf::Keyboard::Down) or sf::Keyboard::isKeyPressed(sf::Keyboard::Right) or sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         source.x++;
-        if(source.x*32>=pTexture.getSize().x)
+        if(source.x*64>=pTexture.getSize().x)
         {
         source.x=0;
         }
-        playerImage.setTextureRect(sf::IntRect(source.x * 32, source.y * 32, 32,32));
+        playerImage.setTextureRect(sf::IntRect(source.x * 64, source.y * 64, 64,64));
         playerImage.setPosition(x,y);
-        Window.draw(background);
         Window.draw(playerImage);
         Window.display();
 
