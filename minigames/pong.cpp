@@ -18,10 +18,11 @@ public:
     sf::Font font;
     sf::Text score1, score2, title;
     string score1string, score2string;
-    float x = 512,y = 120,p1x = 0,p1y = 284, p2x = 1004, p2y = 284;
+    float x = 512,y = 120,p1x = 0,p1y = 284, p2x = 1014, p2y = 234;
     float b1x, b1y, b2x, b2y, scoreboardx, scoreboardy, xspeed = .7, yspeed = .5;
     bool right = true, up = false;
-    int paddlehits = 0, counter = 0, temp1 = 0, temp2 = 0 , g = 255, r = 255;
+    int paddlehits = 0, counter = 0, temp1 = 0, temp2 = 0;
+    float g = 255, r = 255;
     float startingspeed = .7,p1score = 0, p2score = 0;
 };
 int main()
@@ -50,6 +51,7 @@ void pong::variable (sf::RenderWindow & window)
     player2.setPosition(p2x,p2y);
     player2.setSize(sf::Vector2f(20,100));
     player2.setFillColor(sf::Color::White);
+    player2.setOrigin(sf::Vector2f(10,50));
     ball.setRadius(10);
     ball.setPosition(x,y);
     ball.setFillColor(sf::Color::Green);
@@ -68,7 +70,7 @@ void pong::variable (sf::RenderWindow & window)
     title.setFont(font);
     title.setCharacterSize(90);
     title.setPosition(200,-20);
-    title.setString("MOOSKETBALL");
+    title.setString("CADESUCKSKETBALL");
     scoreboard.setPosition(0,0);
     scoreboard.setSize(sf::Vector2f(1024,100));
     scoreboard.setFillColor(sf::Color::Black);
@@ -76,7 +78,7 @@ void pong::variable (sf::RenderWindow & window)
 }
 void pong::game (sf::RenderWindow & window)
 {
-    if (p2y > y and p2y >= 100 and x > 312 and right == true)
+    if (p2y > y and p2y >= 150 and x > 312 and right == true)
     {
                 p2y -= 1;
     }
@@ -170,13 +172,13 @@ void pong::game (sf::RenderWindow & window)
     {
         score1.setColor(sf::Color(g,255,g));
         temp1++;
-        g-=20;
+        g-=28.333;
     }
     if (p2score > temp2)
     {
         score2.setColor(sf::Color(255,r,r));
         temp2++;
-        r-=20;
+        r-=28.333;
     }
     window.draw(scoreboard);
     ball.setPosition(x,y);
