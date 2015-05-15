@@ -29,7 +29,7 @@ int main()
     sf::Texture backg;
     sf::Sprite background;
 
-    if(!pTexture.loadFromFile("player2.png"))
+    if(!pTexture.loadFromFile("player.png"))
         std::cout << "ERROR" << std::endl;
 
     if(!backg.loadFromFile("bg.png"))
