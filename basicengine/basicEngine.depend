@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1430936755 source:c:\users\zach\desktop\moose_king\basicengine\animation.cpp
+	<SFML/Graphics.hpp>
+	<string>
+	<iostream>
+
+1385320478 source:c:\users\zach\desktop\moose_king\basicengine\main.cpp
+	<iostream>
+
+1430770597 source:c:\users\zach\desktop\moose_king\basicengine\platform.cpp
+
+1431540884 source:c:\users\zach\desktop\moose_king\basicengine\player.cpp
+	"Player.h"
+	"TextureHolder.h"
+
+1431540872 c:\users\zach\desktop\moose_king\basicengine\player.h
+	<SFML/Graphics.hpp>
+	"TextureHolder.h"
+
+1431541018 c:\users\zach\desktop\moose_king\basicengine\textureholder.h
+	<iostream>
+	<SFML/Graphics.hpp>
+	<vector>
+
