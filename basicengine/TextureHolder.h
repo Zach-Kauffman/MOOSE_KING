@@ -10,11 +10,12 @@ class TextureHolder {
 public:
     TextureHolder();
     void addTexture(std::string path, std::string name);
-    sf::Texture& getTexture();
+    sf::Texture* getTexture(std::string name);
+    sf::Texture& getTextureRef(std::string name);
     std::vector<sf::Texture> textureList;
-    std::vector<std::string> Map;
+    std::map<std::string, int> textureMap;
 
 };
 
 
-#endif //PLAYER_H
+#endif //TEXTUREHOLDER_H

@@ -10,9 +10,13 @@ void TextureHolder::addTexture(string path, string name) {
     sf::Texture Temp;
     Temp.loadFromFile(path);
     textureList.push_back(Temp);
-    std::map.push_back(textureList.size()-1);
+    textureMap[name] = (textureList.size() - 1);
 }
 
-sf::Texture& TextureHolder::getTexture(string name) {
-    return textureList[Map[name]];
+sf::Texture* TextureHolder::getTexture(string name) {
+    return &textureList[textureMap[name]];
+}
+
+sf::Texture& TextureHolder::getTextureRef(string name) {
+    return textureList[textureMap[name]];
 }

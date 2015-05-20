@@ -1,24 +1,58 @@
 # depslib dependency file v1.0
-1430936755 source:c:\users\zach\desktop\moose_king\basicengine\animation.cpp
+1432142516 source:c:\users\zach\desktop\moose_king\basicengine\animation.cpp
+	"Animation.hpp"
+
+1432144502 source:c:\users\zach\desktop\moose_king\basicengine\main.cpp
 	<SFML/Graphics.hpp>
 	<string>
 	<iostream>
-
-1385320478 source:c:\users\zach\desktop\moose_king\basicengine\main.cpp
-	<iostream>
-
-1430770597 source:c:\users\zach\desktop\moose_king\basicengine\platform.cpp
-
-1431540884 source:c:\users\zach\desktop\moose_king\basicengine\player.cpp
 	"Player.h"
 	"TextureHolder.h"
 
-1431540872 c:\users\zach\desktop\moose_king\basicengine\player.h
+1430770597 source:c:\users\zach\desktop\moose_king\basicengine\platform.cpp
+
+1432144346 source:c:\users\zach\desktop\moose_king\basicengine\player.cpp
+	"Player.h"
+	"TextureHolder.h"
+
+1432143901 c:\users\zach\desktop\moose_king\basicengine\player.h
 	<SFML/Graphics.hpp>
 	"TextureHolder.h"
 
-1431541018 c:\users\zach\desktop\moose_king\basicengine\textureholder.h
+1431980914 c:\users\zach\desktop\moose_king\basicengine\textureholder.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	<vector>
+
+1431980914 source:c:\users\zach\desktop\moose_king\basicengine\textureholder.cpp
+	"TextureHolder.h"
+
+1432142516 source:c:\users\zach\desktop\moose_king\basicengine\animatedsprite.cpp
+	"AnimatedSprite.hpp"
+
+1432142455 c:\users\zach\desktop\moose_king\basicengine\animatedsprite.h
+	<SFML/Graphics/RenderTarget.hpp>
+	<SFML/System/Time.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Transformable.hpp>
+	<SFML/System/Vector2.hpp>
+	"Animation.h"
+
+1432142455 c:\users\zach\desktop\moose_king\basicengine\animation.h
+	<vector>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/Texture.hpp>
+
+1432142516 c:\users\zach\desktop\moose_king\basicengine\animatedsprite.hpp
+	<SFML/Graphics/RenderTarget.hpp>
+	<SFML/System/Time.hpp>
+	<SFML/Graphics/Drawable.hpp>
+	<SFML/Graphics/Transformable.hpp>
+	<SFML/System/Vector2.hpp>
+	"Animation.hpp"
+
+1432142455 c:\users\zach\desktop\moose_king\basicengine\animation.hpp
+	<vector>
+	<SFML/Graphics/Rect.hpp>
+	<SFML/Graphics/Texture.hpp>
 

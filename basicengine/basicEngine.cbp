@@ -32,13 +32,13 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Main.cpp" />
 		<Unit filename="Platform.cpp" />
 		<Unit filename="Platform.h" />
 		<Unit filename="Player.cpp" />
 		<Unit filename="Player.h" />
 		<Unit filename="TextureHolder.cpp" />
 		<Unit filename="TextureHolder.h" />
-		<Unit filename="animation.cpp" />
 		<Unit filename="playerSpritesheet.png" />
 		<Unit filename="scrollingtest.png" />
 		<Extensions>

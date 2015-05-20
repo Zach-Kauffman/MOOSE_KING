@@ -7,20 +7,20 @@
 
 class Player {
 public:
-    Player();
-    //MooseTexture = holder.getTexture("MT");
+    Player(TextureHolder&);
     void moveJump(float,float);
     void moveRight();
     void moveLeft();
     void Animate();
-
+    sf::Sprite MooseSprite;
 private:
+    bool Ground,Jump,Down;
     enum Cel {IdleRight, IdleLeft, Right, Left};
-    int sourceX, sourceY;
+    sf::Vector2i source;
     float x,y;
     sf::Vector2f location;
-    sf::Texture *MooseTexture;
-    sf::Sprite MooseSprite;
+    sf::Texture* MooseTexture;
+
 };
 
 
