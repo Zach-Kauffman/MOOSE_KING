@@ -52,37 +52,6 @@ int main()
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
                 Moose.moveLeft();
             }
-//            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) and ground == true)
-//            {
-//                gravity = -10;
-//                ground = false;
-//                jump = true;
-//                down = false;
-//            }
-//            if (jump == true && down == false)
-//            {
-//                y+=gravity;
-//                gravity+=.5;
-//                if (down == false and gravity > 0){
-//                    down = true;
-//                }
-//            }
-//
-//            if (down == true && ground == false){
-//                y-=gravity;
-//                gravity-=.5;
-////                if ((Player.getGlobalBounds() - sf::Vector2f(0, y - gravity)).intersects(platform.getGlobalBounds())) {
-////                    down == false;
-////                    ground == true;
-////                    sf::Vector2f platformLocation = platform.getPosition();
-////                    y -= (y - platformLocation.y);
-////                }
-//
-//            }
-//            if (ground == true) {
-//                y -= .01;
-//                gravity = 0;
-//            }
             if (Moose.MooseSprite.getGlobalBounds().intersects(platform.getGlobalBounds())) {
                 cout << "SDFAJIASDFAJIO";
                 ground = true;
@@ -97,7 +66,6 @@ int main()
         platform.setPosition(500,340);
         Window.draw(Moose.MooseSprite);
         Window.draw(platform);
-        //cout << y << endl;
         Window.display();
 
         Window.clear();
