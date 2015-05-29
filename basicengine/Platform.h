@@ -3,12 +3,16 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <vector>
 
 class Platform {
 private:
     Platform();
+    sf::RectangleShape createPlatform(sf::Vector2f,sf::Vector2f);
+    void addPlatform(sf::RectangleShape);
 public:
-    int length;
+    std::vector<sf::RectangleShape> platformList;
+    sf::Vector2f platSize;
     sf::Vector2f location;
 };
 

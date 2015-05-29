@@ -1,15 +1,72 @@
 #include<SFML/Graphics.hpp>
 #include<string>
 #include<iostream>
+#include <math.h>
+#include <stdlib.h>
+#include <iomanip>
+#include <time.h>
+#include <sstream>
+#include <vector>
+#include "Pong.h"
 #include "Player.h"
 #include "TextureHolder.h"
+#include "Flashlight.h"
 
 using namespace std;
 
+bool pongGame() {
+    int side = 0;
+    Pong p;
+    if (!p.font.loadFromFile("alba.TTF")) {
+        cout << "FONT FAILED TO LOAD";
+    }
+    sf::RenderWindow pongWindow(sf::VideoMode(1024, 768), "The Game");
+    pongWindow.setFramerateLimit(9999);
+    p.variable(pongWindow);
+    while (pongWindow.isOpen()) {
+        pongWindow.clear(sf::Color(0,102,0));
+        p.game(pongWindow);
+        pongWindow.display();
+        if (p.p1score >= 7) {
+            pongWindow.close();
+            cout << "You won!";
+            return true;
+        }
+        if (p.p2score >= 7) {
+            pongWindow.close();
+            cout << "You lose!";
+            return false;
+        }
+    }
+}
+
+bool flashlightGame() {
+    srand(time(NULL));
+    Flashlight F;
+    sf::RenderWindow flashlightWindow(sf::VideoMode(1020,764), "HIDE");
+    sf::Clock clock;
+
+    F.squareGenerator(flashlightWindow,clock);
+    while(flashlightWindow.isOpen())
+    {
+        flashlightWindow.clear(sf::Color::Blue);
+        F.variable(flashlightWindow);
+        F.game(flashlightWindow,clock);
+        F.time(flashlightWindow,clock);
+        flashlightWindow.display();
+    }
+    if (F.win == true) {
+        return true;
+    }
+    if (F.win == false) {
+        return false;
+    }
+}
+
 int main()
 {
-    bool ground = true,jump = false,down = true;
-    int c = 0;
+    srand(time(NULL));
+    float acceleration;
     sf::RenderWindow Window;
     Window.create(sf::VideoMode(1000, 400), "Sprite Sheet");
     Window.setFramerateLimit(18);
@@ -52,11 +109,24 @@ int main()
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
                 Moose.moveLeft();
             }
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && Moose.Ground == true) {
+                Moose.Jump = true;
+                Moose.Ground = false;
+                acceleration = 25;
+            }
+            if (Moose.Ground == false && Moose.Jump == true) {
+                acceleration = Moose.moveJump(acceleration);
+            }
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+                pongGame();
+            }
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace)) {
+                flashlightGame();
+            }
             if (Moose.MooseSprite.getGlobalBounds().intersects(platform.getGlobalBounds())) {
                 cout << "SDFAJIASDFAJIO";
-                ground = true;
-                jump = false;
-                down = true;
+                Moose.Ground = true;
+                Moose.Jump = false;
                 Moose.MooseSprite.move(0,-1);
             }
 //            if (!Player.getGlobalBounds().intersects(platform.getGlobalBounds())) {

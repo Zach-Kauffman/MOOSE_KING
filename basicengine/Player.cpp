@@ -9,6 +9,7 @@ Player::Player(TextureHolder& Temp){
     Down = true;
     x = 500;
     y = 320;
+    Gravity = 2.5;
     Temp.addTexture("playerSpritesheet.png","playerSpritesheet.png");
     MooseTexture = Temp.getTexture("playerSpritesheet.png");
     MooseSprite.setTexture(Temp.getTextureRef("playerSpritesheet.png"));
@@ -16,8 +17,10 @@ Player::Player(TextureHolder& Temp){
     source.y = Right;
 }
 
-void Player::moveJump(float gravityCoefficient, float Gravity) {
-
+float Player::moveJump(float acceleration) {
+    MooseSprite.move(0,-acceleration);
+    acceleration -= Gravity;
+    return acceleration;
 }
 
 void Player::moveLeft() {

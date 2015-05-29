@@ -2,20 +2,29 @@
 1432142516 source:c:\users\zach\desktop\moose_king\basicengine\animation.cpp
 	"Animation.hpp"
 
-1432144681 source:c:\users\zach\desktop\moose_king\basicengine\main.cpp
+1432921745 source:c:\users\zach\desktop\moose_king\basicengine\main.cpp
 	<SFML/Graphics.hpp>
 	<string>
 	<iostream>
+	<math.h>
+	<stdlib.h>
+	<iomanip>
+	<time.h>
+	<sstream>
+	<vector>
+	"Pong.h"
+	"Player.h"
+	"TextureHolder.h"
+	"Flashlight.h"
+
+1432314001 source:c:\users\zach\desktop\moose_king\basicengine\platform.cpp
+	"Platform.h"
+
+1432921356 source:c:\users\zach\desktop\moose_king\basicengine\player.cpp
 	"Player.h"
 	"TextureHolder.h"
 
-1430770597 source:c:\users\zach\desktop\moose_king\basicengine\platform.cpp
-
-1432144346 source:c:\users\zach\desktop\moose_king\basicengine\player.cpp
-	"Player.h"
-	"TextureHolder.h"
-
-1432143901 c:\users\zach\desktop\moose_king\basicengine\player.h
+1432921406 c:\users\zach\desktop\moose_king\basicengine\player.h
 	<SFML/Graphics.hpp>
 	"TextureHolder.h"
 
@@ -55,4 +64,42 @@
 	<vector>
 	<SFML/Graphics/Rect.hpp>
 	<SFML/Graphics/Texture.hpp>
+
+1432921745 c:\users\zach\desktop\moose_king\basicengine\platform.h
+	<iostream>
+	<SFML/Graphics.hpp>
+	<vector>
+
+1432747233 source:c:\users\zach\desktop\moose_king\basicengine\pong.cpp
+	"Pong.h"
+
+1432747070 c:\users\zach\desktop\moose_king\basicengine\pong.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<math.h>
+	<stdlib.h>
+	<iomanip>
+	<time.h>
+	<sstream>
+
+1432749829 c:\users\zach\desktop\moose_king\basicengine\include\flashlight.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<math.h>
+	<stdlib.h>
+	<iomanip>
+	<time.h>
+	<sstream>
+
+1432920368 c:\users\zach\desktop\moose_king\basicengine\flashlight.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<math.h>
+	<stdlib.h>
+	<iomanip>
+	<time.h>
+	<sstream>
+
+1432920439 source:c:\users\zach\desktop\moose_king\basicengine\flashlight.cpp
+	"Flashlight.h"
 

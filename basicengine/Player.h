@@ -8,13 +8,14 @@
 class Player {
 public:
     Player(TextureHolder&);
-    void moveJump(float,float);
+    float moveJump(float);
     void moveRight();
     void moveLeft();
     void Animate();
     sf::Sprite MooseSprite;
-private:
     bool Ground,Jump,Down;
+private:
+    float Gravity;
     enum Cel {IdleRight, IdleLeft, Right, Left};
     sf::Vector2i source;
     float x,y;
