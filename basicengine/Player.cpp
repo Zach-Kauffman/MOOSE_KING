@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "TextureHolder.h"
+#include "Platform.h"
 
 using namespace std;
 
@@ -9,6 +10,7 @@ Player::Player(TextureHolder& Temp){
     Down = true;
     x = 500;
     y = 320;
+    Gravity = 2.5;
     Temp.addTexture("playerSpritesheet.png","playerSpritesheet.png");
     MooseTexture = Temp.getTexture("playerSpritesheet.png");
     MooseSprite.setTexture(Temp.getTextureRef("playerSpritesheet.png"));
@@ -16,8 +18,10 @@ Player::Player(TextureHolder& Temp){
     source.y = Right;
 }
 
-void Player::moveJump(float gravityCoefficient, float Gravity) {
-
+float Player::moveJump(float acceleration) {
+    MooseSprite.move(0,-acceleration);
+    acceleration -= Gravity;
+    return acceleration;
 }
 
 void Player::moveLeft() {
@@ -42,4 +46,19 @@ void Player::Animate() {
     MooseSprite.setTextureRect(sf::IntRect(source.x * 64, source.y * 64, 64,64));
 }
 
-
+void Player::checkCollisions(Platform temp, float acceleration) {
+    for (int ii = 0; ii < temp.platformList.size(); ii ++) {
+        if(!temp.platformList[ii].getGlobalBounds().intersects(MooseSprite.getGlobalBounds())) {
+            Ground = false;
+            moveJump(-1);
+        }
+        if(temp.platformList[ii].getGlobalBounds().intersects(MooseSprite.getGlobalBounds())) {
+            MooseSprite.move(0,-1);
+            Ground = true;
+            Jump = false;
+        }
+//        if (Jump == true && (MooseSprite.getPosition().y + moveJump(acceleration)) > temp.platformList[ii].getPosition().y) {
+//            MooseSprite.move(0,(MooseSprite.getPosition().y + moveJump(acceleration)) - temp.platformList[ii].getPosition().y);
+//        }
+    }
+}
