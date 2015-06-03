@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1432919565 source:c:\users\kyle\documents\moose kings\minigame\main.cpp
+	<iostream>
+	<SFML/Graphics.hpp>
+	<time.h>
+	<windows.h>
+	<sstream>
+
