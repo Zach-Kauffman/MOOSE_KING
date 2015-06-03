@@ -4,6 +4,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "TextureHolder.h"
+#include "Platform.h"
 
 class Player {
 public:
@@ -12,6 +13,7 @@ public:
     void moveRight();
     void moveLeft();
     void Animate();
+    void checkCollisions(Platform,float);
     sf::Sprite MooseSprite;
     bool Ground,Jump,Down;
 private:

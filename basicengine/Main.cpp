@@ -11,6 +11,7 @@
 #include "Player.h"
 #include "TextureHolder.h"
 #include "Flashlight.h"
+#include "Platform.h"
 
 using namespace std;
 
@@ -74,13 +75,13 @@ int main()
     Window.setKeyRepeatEnabled(false);
     TextureHolder TempTextureHolder;
     Player Moose(TempTextureHolder);
+    Platform TempPlatform;
+
+    //TempPlatform.addPlatform(sf::Vector2f(100,100),sf::Vector2f(500,300),sf::Color(255,0,0));
+    TempPlatform.addPlatform(sf::Vector2f(100,400),sf::Vector2f(500,0),sf::Color(255,255,0));
 
     sf::Texture backg;
     sf::Sprite background;
-
-    sf::RectangleShape platform (sf::Vector2f(500,340));
-    platform.setSize(sf::Vector2f(1280,32));
-    platform.setPosition(500,340);
 
     if(!backg.loadFromFile("scrollingtest.png")) {
         std::cout << "ERROR" << std::endl;
@@ -88,56 +89,42 @@ int main()
 
     Moose.MooseSprite.setPosition(500,325);
 
-
     Moose.Animate();
     background.setTexture(backg);
     background.setPosition(0,0);
-    while(Window.isOpen())
-    {
+    while(Window.isOpen()) {
         sf::Event Event;
-        while(Window.pollEvent(Event))
-        {
+        while(Window.pollEvent(Event)) {
             {
             break;
             }
         }
-            background.setPosition(0,0);
-            Window.draw(background);
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-                Moose.moveRight();
-            }
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-                Moose.moveLeft();
-            }
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && Moose.Ground == true) {
-                Moose.Jump = true;
-                Moose.Ground = false;
-                acceleration = 25;
-            }
-            if (Moose.Ground == false && Moose.Jump == true) {
-                acceleration = Moose.moveJump(acceleration);
-            }
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-                pongGame();
-            }
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace)) {
-                flashlightGame();
-            }
-            if (Moose.MooseSprite.getGlobalBounds().intersects(platform.getGlobalBounds())) {
-                cout << "SDFAJIASDFAJIO";
-                Moose.Ground = true;
-                Moose.Jump = false;
-                Moose.MooseSprite.move(0,-1);
-            }
-//            if (!Player.getGlobalBounds().intersects(platform.getGlobalBounds())) {
-//                 ground = false;
-//                 down = true;
-//            }
-        platform.setPosition(500,340);
+        background.setPosition(0,0);
+        Window.draw(background);
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+            Moose.moveRight();
+        }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+            Moose.moveLeft();
+        }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && Moose.Ground == true) {
+            Moose.Jump = true;
+            Moose.Ground = false;
+            acceleration = 25;
+        }
+        if (Moose.Ground == false && Moose.Jump == true) {
+            acceleration = Moose.moveJump(acceleration);
+        }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+            pongGame();
+        }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace)) {
+            flashlightGame();
+        }
+        Moose.checkCollisions(TempPlatform,acceleration);
+        TempPlatform.drawPlatforms(Window);
         Window.draw(Moose.MooseSprite);
-        Window.draw(platform);
         Window.display();
-
         Window.clear();
     }
     return 0;
