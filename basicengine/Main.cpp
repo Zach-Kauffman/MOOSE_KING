@@ -12,11 +12,11 @@
 #include "TextureHolder.h"
 #include "Flashlight.h"
 #include "Platform.h"
+#include "Button.h"
 
 using namespace std;
 
 bool pongGame() {
-    int side = 0;
     Pong p;
     if (!p.font.loadFromFile("alba.TTF")) {
         cout << "FONT FAILED TO LOAD";
@@ -39,6 +39,7 @@ bool pongGame() {
             return false;
         }
     }
+    return false;
 }
 
 bool flashlightGame() {
@@ -62,10 +63,10 @@ bool flashlightGame() {
     if (F.win == false) {
         return false;
     }
+    return false;
 }
 
-int main()
-{
+void Game() {
     srand(time(NULL));
     float acceleration;
     sf::RenderWindow Window;
@@ -77,8 +78,8 @@ int main()
     Player Moose(TempTextureHolder);
     Platform TempPlatform;
 
-    //TempPlatform.addPlatform(sf::Vector2f(100,100),sf::Vector2f(500,300),sf::Color(255,0,0));
-    TempPlatform.addPlatform(sf::Vector2f(100,400),sf::Vector2f(500,0),sf::Color(255,255,0));
+    TempPlatform.addPlatform(sf::Vector2f(200,20),sf::Vector2f(500,250),sf::Color(255,0,0));
+    TempPlatform.addPlatform(sf::Vector2f(1000,60),sf::Vector2f(0,340),sf::Color(255,255,0));
 
     sf::Texture backg;
     sf::Sprite background;
@@ -87,7 +88,7 @@ int main()
         std::cout << "ERROR" << std::endl;
     }
 
-    Moose.MooseSprite.setPosition(500,325);
+    Moose.MooseSprite.setPosition(500,300);
 
     Moose.Animate();
     background.setTexture(backg);
@@ -126,6 +127,18 @@ int main()
         Window.draw(Moose.MooseSprite);
         Window.display();
         Window.clear();
+    }
+}
+
+int main() {
+    Button button;
+    button.buttonLabel = "ENTER THE MOOSIVERSE";
+    button.presser.setSize(sf::Vector2f(200,50));
+    button.presser.setPosition(sf::Vector2f(500,250));
+    sf::RenderWindow Window;
+    Window.create(sf::VideoMode(1000, 400), "MOOSE");
+    if(button.pressButton(Window) == true) {
+        Game();
     }
     return 0;
 }

@@ -2,7 +2,7 @@
 1432142516 source:c:\users\zach\desktop\moose_king\basicengine\animation.cpp
 	"Animation.hpp"
 
-1432921745 source:c:\users\zach\desktop\moose_king\basicengine\main.cpp
+1433438067 source:c:\users\zach\desktop\moose_king\basicengine\main.cpp
 	<SFML/Graphics.hpp>
 	<string>
 	<iostream>
@@ -16,17 +16,22 @@
 	"Player.h"
 	"TextureHolder.h"
 	"Flashlight.h"
-
-1432314001 source:c:\users\zach\desktop\moose_king\basicengine\platform.cpp
 	"Platform.h"
+	"Button.h"
 
-1432921356 source:c:\users\zach\desktop\moose_king\basicengine\player.cpp
+1433350459 source:c:\users\zach\desktop\moose_king\basicengine\platform.cpp
+	"Platform.h"
+	"Player.h"
+
+1433437312 source:c:\users\zach\desktop\moose_king\basicengine\player.cpp
 	"Player.h"
 	"TextureHolder.h"
+	"Platform.h"
 
-1432921406 c:\users\zach\desktop\moose_king\basicengine\player.h
+1433352040 c:\users\zach\desktop\moose_king\basicengine\player.h
 	<SFML/Graphics.hpp>
 	"TextureHolder.h"
+	"Platform.h"
 
 1431980914 c:\users\zach\desktop\moose_king\basicengine\textureholder.h
 	<iostream>
@@ -65,7 +70,7 @@
 	<SFML/Graphics/Rect.hpp>
 	<SFML/Graphics/Texture.hpp>
 
-1432921745 c:\users\zach\desktop\moose_king\basicengine\platform.h
+1433350459 c:\users\zach\desktop\moose_king\basicengine\platform.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	<vector>
@@ -102,4 +107,11 @@
 
 1432920439 source:c:\users\zach\desktop\moose_king\basicengine\flashlight.cpp
 	"Flashlight.h"
+
+1433436597 source:c:\users\zach\desktop\moose_king\basicengine\button.cpp
+	"Button.h"
+
+1433355526 c:\users\zach\desktop\moose_king\basicengine\button.h
+	<iostream>
+	<SFML/Graphics.hpp>
 

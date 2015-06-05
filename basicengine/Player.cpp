@@ -48,17 +48,14 @@ void Player::Animate() {
 
 void Player::checkCollisions(Platform temp, float acceleration) {
     for (int ii = 0; ii < temp.platformList.size(); ii ++) {
-        if(!temp.platformList[ii].getGlobalBounds().intersects(MooseSprite.getGlobalBounds())) {
+        if(!temp.platformList[ii].getGlobalBounds().intersects(MooseSprite.getGlobalBounds()) && Jump == false) {
             Ground = false;
-            moveJump(-1);
+            moveJump(-10);
         }
         if(temp.platformList[ii].getGlobalBounds().intersects(MooseSprite.getGlobalBounds())) {
-            MooseSprite.move(0,-1);
+            MooseSprite.setPosition(sf::Vector2f(MooseSprite.getPosition().x,(temp.platformList[ii].getPosition().y)-64));
             Ground = true;
             Jump = false;
         }
-//        if (Jump == true && (MooseSprite.getPosition().y + moveJump(acceleration)) > temp.platformList[ii].getPosition().y) {
-//            MooseSprite.move(0,(MooseSprite.getPosition().y + moveJump(acceleration)) - temp.platformList[ii].getPosition().y);
-//        }
     }
 }
