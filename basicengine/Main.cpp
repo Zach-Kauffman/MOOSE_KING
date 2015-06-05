@@ -78,7 +78,7 @@ void Game() {
     Player Moose(TempTextureHolder);
     Platform TempPlatform;
 
-    TempPlatform.addPlatform(sf::Vector2f(200,20),sf::Vector2f(500,250),sf::Color(255,0,0));
+    TempPlatform.addPlatform(sf::Vector2f(200,20),sf::Vector2f(500,212),sf::Color(255,0,0));
     TempPlatform.addPlatform(sf::Vector2f(1000,60),sf::Vector2f(0,340),sf::Color(255,255,0));
 
     sf::Texture backg;
