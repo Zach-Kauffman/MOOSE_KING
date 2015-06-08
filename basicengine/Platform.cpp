@@ -20,12 +20,19 @@ void Platform::addPlatform(sf::Vector2f platSize,sf::Vector2f location,sf::Color
     temp.setSize(platSize);
     temp.setPosition(location);
     temp.setFillColor(color);
+    temp.setOrigin(0,0);
     platformList.push_back(temp);
 }
 
 void Platform::drawPlatforms(sf::RenderWindow &Window) {
     for (int ii = 0; ii < platformList.size(); ii ++) {
         Window.draw(platformList[ii]);
+    }
+}
+
+void Platform::scrollPlatforms(sf::Vector2f position) {
+    for (int ii = 0; ii < platformList.size(); ii ++) {
+        platformList[ii].setPosition(sf::Vector2f(platformList[ii].getPosition().x + position.x,platformList[ii].getPosition().y + position.y));
     }
 }
 

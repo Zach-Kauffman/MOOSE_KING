@@ -24,18 +24,22 @@ float Player::moveJump(float acceleration) {
     return acceleration;
 }
 
-void Player::moveLeft() {
+sf::Vector2f Player::moveLeft(sf::Sprite background, sf::Vector2f backgroundPosition) {
     MooseSprite.move(-5,0);
     location = MooseSprite.getPosition();
     source.y = Left;
     Animate();
+    backgroundPosition = scrollBackground(background,backgroundPosition);
+    return backgroundPosition;
 }
 
-void Player::moveRight() {
+sf::Vector2f Player::moveRight(sf::Sprite background, sf::Vector2f backgroundPosition) {
     MooseSprite.move(5,0);
     location = MooseSprite.getPosition();
     source.y = Right;
     Animate();
+    backgroundPosition = scrollBackground(background,backgroundPosition);
+    return backgroundPosition;
 }
 
 void Player::Animate() {
@@ -49,13 +53,26 @@ void Player::Animate() {
 void Player::checkCollisions(Platform temp, float acceleration) {
     for (int ii = 0; ii < temp.platformList.size(); ii ++) {
         if(!temp.platformList[ii].getGlobalBounds().intersects(MooseSprite.getGlobalBounds()) && Jump == false) {
-            Ground = false;
+            //Ground = false;
             moveJump(-10);
         }
         if(temp.platformList[ii].getGlobalBounds().intersects(MooseSprite.getGlobalBounds())) {
-            MooseSprite.setPosition(sf::Vector2f(MooseSprite.getPosition().x,(temp.platformList[ii].getPosition().y)-64));
+            MooseSprite.setPosition(sf::Vector2f(MooseSprite.getPosition().x,(temp.platformList[ii].getPosition().y)));
             Ground = true;
             Jump = false;
         }
     }
 }
+
+sf::Vector2f Player::scrollBackground(sf::Sprite background, sf::Vector2f backgroundPosition) {
+    if (MooseSprite.getPosition().x > (background.getPosition().x + 675)) {
+        backgroundPosition.x -= 5;
+        cout << backgroundPosition.x << endl;
+    }
+    if (MooseSprite.getPosition().x < background.getPosition().x + 325) {
+        backgroundPosition.x += 5;
+        cout << backgroundPosition.x << endl;
+    }
+    return backgroundPosition;
+}
+

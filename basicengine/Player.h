@@ -10,10 +10,11 @@ class Player {
 public:
     Player(TextureHolder&);
     float moveJump(float);
-    void moveRight();
-    void moveLeft();
+    sf::Vector2f moveRight(sf::Sprite, sf::Vector2f);
+    sf::Vector2f moveLeft(sf::Sprite, sf::Vector2f);
     void Animate();
     void checkCollisions(Platform,float);
+    sf::Vector2f scrollBackground(sf::Sprite,sf::Vector2f);
     sf::Sprite MooseSprite;
     bool Ground,Jump,Down;
 private:

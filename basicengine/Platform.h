@@ -11,6 +11,7 @@ public:
     sf::RectangleShape createPlatform(sf::Vector2f,sf::Vector2f,sf::Color);
     void addPlatform(sf::Vector2f,sf::Vector2f,sf::Color);
     void drawPlatforms(sf::RenderWindow &);
+    void scrollPlatforms(sf::Vector2f);
     std::vector<sf::RectangleShape> platformList;
 private:
     sf::Color platColor;
