@@ -9,12 +9,6 @@ Platform::Platform() {
     location.y = 0;
 }
 
-sf::RectangleShape Platform::createPlatform(sf::Vector2f platSize,sf::Vector2f location,sf::Color color) {
-    sf::RectangleShape temp;
-
-    return temp;
-}
-
 void Platform::addPlatform(sf::Vector2f platSize,sf::Vector2f location,sf::Color color) {
     sf::RectangleShape temp;
     temp.setSize(platSize);
@@ -27,12 +21,19 @@ void Platform::addPlatform(sf::Vector2f platSize,sf::Vector2f location,sf::Color
 void Platform::drawPlatforms(sf::RenderWindow &Window) {
     for (int ii = 0; ii < platformList.size(); ii ++) {
         Window.draw(platformList[ii]);
+        location = platformList[ii].getPosition();
     }
 }
 
-void Platform::scrollPlatforms(sf::Vector2f position) {
+void Platform::findLocation(sf::RenderWindow &Window) {
     for (int ii = 0; ii < platformList.size(); ii ++) {
-        platformList[ii].setPosition(sf::Vector2f(platformList[ii].getPosition().x + position.x,platformList[ii].getPosition().y + position.y));
+        locationList.push_back(platformList[ii].getPosition());
+    }
+}
+
+void Platform::scrollPlatforms(float bgX) {
+    for (int ii = 0; ii < platformList.size(); ii ++) {
+        platformList[ii].setPosition(locationList[ii].x + bgX, locationList[ii].y);
     }
 }
 

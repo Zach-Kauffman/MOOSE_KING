@@ -8,11 +8,12 @@
 class Platform {
 public:
     Platform();
-    sf::RectangleShape createPlatform(sf::Vector2f,sf::Vector2f,sf::Color);
     void addPlatform(sf::Vector2f,sf::Vector2f,sf::Color);
     void drawPlatforms(sf::RenderWindow &);
-    void scrollPlatforms(sf::Vector2f);
+    void findLocation(sf::RenderWindow &);
+    void scrollPlatforms(float);
     std::vector<sf::RectangleShape> platformList;
+    std::vector<sf::Vector2f> locationList;
 private:
     sf::Color platColor;
     sf::Vector2f platSize;
