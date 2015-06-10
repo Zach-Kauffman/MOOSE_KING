@@ -6,9 +6,14 @@ Button::Button() {
     touch=false;
     font.loadFromFile("alba.TTF");
     buttonText.setFont(font);
-    buttonText.setString(buttonLabel);
+    buttonText.setString("Enter the MOOSIVERSE");
     buttonText.setCharacterSize(69);
-    buttonText.setColor(sf::Color::Black);
+    buttonText.setColor(sf::Color(255,255,0));
+    buttonText.setPosition(200,200);
+    sillytext.setCharacterSize(75);
+    sillytext.setColor(sf::Color(122,122,122));
+    sillytext.setString("The government watches us");
+    sillytext.setFont(font);
     presser.setOutlineThickness(10);
 }
 
@@ -22,8 +27,8 @@ bool Button::pressButton(sf::RenderWindow &window) {
         if (click)
         {
         window.clear();
-        window.draw(buttonText);
         window.draw(presser);
+        window.draw(buttonText);
         window.display();
         }
         while (click)
@@ -46,10 +51,11 @@ bool Button::pressButton(sf::RenderWindow &window) {
         else
         {
             window.clear();
-            presser.setFillColor(sf::Color(100,100,0));
-            presser.setOutlineColor(sf::Color(25,25,25));
+            presser.setFillColor(sf::Color(51,204,255));
+            presser.setOutlineColor(sf::Color(51,102,255));
             window.draw(presser);
             window.draw(buttonText);
+            window.draw(sillytext);
             window.display();
             if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
             {

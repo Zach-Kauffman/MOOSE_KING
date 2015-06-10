@@ -14,6 +14,7 @@ class Button {
         bool click, touch;
         sf::Font font;
         sf::Text buttonText;
+        sf:: Text sillytext;
 
 
 };
