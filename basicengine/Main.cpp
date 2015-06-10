@@ -69,6 +69,7 @@ bool flashlightGame() {
 void Game() {
     srand(time(NULL));
     float acceleration;
+    float bgX = 0;
     sf::RenderWindow Window;
     Window.create(sf::VideoMode(1000, 400), "Sprite Sheet");
     Window.setFramerateLimit(18);
@@ -81,7 +82,6 @@ void Game() {
 
     TempPlatform.addPlatform(sf::Vector2f(200,20),sf::Vector2f(500,212),sf::Color(255,0,0));
     TempPlatform.addPlatform(sf::Vector2f(1000,60),sf::Vector2f(0,340),sf::Color(255,255,0));
-
     sf::Texture backg;
     sf::Sprite background;
     backgroundPosition.x = 0;
@@ -90,12 +90,11 @@ void Game() {
     if(!backg.loadFromFile("scrollingtest.png")) {
         std::cout << "ERROR" << std::endl;
     }
-
     Moose.MooseSprite.setPosition(500,300);
 
     Moose.Animate();
     background.setTexture(backg);
-
+    TempPlatform.findLocation(Window);
     while(Window.isOpen()) {
         sf::Event Event;
         while(Window.pollEvent(Event)) {
@@ -105,10 +104,10 @@ void Game() {
         }
         Window.draw(background);
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-            backgroundPosition = Moose.moveRight(background,backgroundPosition);
+            bgX = Moose.moveRight(background,bgX);
         }
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-            backgroundPosition = Moose.moveLeft(background,backgroundPosition);
+            bgX = Moose.moveLeft(background,bgX);
         }
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && Moose.Ground == true) {
             Moose.Jump = true;
@@ -125,8 +124,8 @@ void Game() {
             flashlightGame();
         }
         Moose.checkCollisions(TempPlatform,acceleration);
-        background.setPosition(backgroundPosition);
-        TempPlatform.scrollPlatforms(backgroundPosition);
+        background.setPosition(backgroundPosition.x + bgX, backgroundPosition.y);
+        TempPlatform.scrollPlatforms(bgX);
         TempPlatform.drawPlatforms(Window);
         Window.draw(Moose.MooseSprite);
         Window.display();

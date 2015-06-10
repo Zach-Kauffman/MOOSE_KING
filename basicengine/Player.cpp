@@ -24,22 +24,22 @@ float Player::moveJump(float acceleration) {
     return acceleration;
 }
 
-sf::Vector2f Player::moveLeft(sf::Sprite background, sf::Vector2f backgroundPosition) {
+float Player::moveLeft(sf::Sprite background, float backgroundPositionx) {
     MooseSprite.move(-5,0);
     location = MooseSprite.getPosition();
     source.y = Left;
     Animate();
-    backgroundPosition = scrollBackground(background,backgroundPosition);
-    return backgroundPosition;
+    backgroundPositionx = scrollBackground(background,backgroundPositionx);
+    return backgroundPositionx;
 }
 
-sf::Vector2f Player::moveRight(sf::Sprite background, sf::Vector2f backgroundPosition) {
+float Player::moveRight(sf::Sprite background, float backgroundPositionx) {
     MooseSprite.move(5,0);
     location = MooseSprite.getPosition();
     source.y = Right;
     Animate();
-    backgroundPosition = scrollBackground(background,backgroundPosition);
-    return backgroundPosition;
+    backgroundPositionx = scrollBackground(background,backgroundPositionx);
+    return backgroundPositionx;
 }
 
 void Player::Animate() {
@@ -64,15 +64,13 @@ void Player::checkCollisions(Platform temp, float acceleration) {
     }
 }
 
-sf::Vector2f Player::scrollBackground(sf::Sprite background, sf::Vector2f backgroundPosition) {
+float Player::scrollBackground(sf::Sprite background, float backgroundPositionx) {
     if (MooseSprite.getPosition().x > (background.getPosition().x + 675)) {
-        backgroundPosition.x -= 5;
-        cout << backgroundPosition.x << endl;
+        backgroundPositionx -= 5;
     }
     if (MooseSprite.getPosition().x < background.getPosition().x + 325) {
-        backgroundPosition.x += 5;
-        cout << backgroundPosition.x << endl;
+        backgroundPositionx += 5;
     }
-    return backgroundPosition;
+    return backgroundPositionx;
 }
 
