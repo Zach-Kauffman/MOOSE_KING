@@ -17,6 +17,7 @@ public:
     float scrollBackground(sf::Sprite,float);
     sf::Sprite MooseSprite;
     bool Ground,Jump,Down;
+    bool mRight, mLeft;
 private:
     float Gravity;
     enum Cel {IdleRight, IdleLeft, Right, Left};

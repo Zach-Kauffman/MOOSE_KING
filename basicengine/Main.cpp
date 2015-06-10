@@ -80,8 +80,13 @@ void Game() {
     Moose.MooseSprite.setOrigin(0,64);
     Platform TempPlatform;
 
-    TempPlatform.addPlatform(sf::Vector2f(200,20),sf::Vector2f(500,212),sf::Color(255,0,0));
+    TempPlatform.addPlatform(sf::Vector2f(200,20),sf::Vector2f(500,240),sf::Color(255,0,0));
     TempPlatform.addPlatform(sf::Vector2f(1000,60),sf::Vector2f(0,340),sf::Color(255,255,0));
+    TempPlatform.addPlatform(sf::Vector2f(400,60),sf::Vector2f(1140,340),sf::Color(255,255,0));
+    TempPlatform.addPlatform(sf::Vector2f(100,20),sf::Vector2f(900,240),sf::Color(255,255,0));
+
+
+
     sf::Texture backg;
     sf::Sprite background;
     backgroundPosition.x = 0;
@@ -136,8 +141,8 @@ void Game() {
 int main() {
     Button button;
     button.buttonLabel = "ENTER THE MOOSIVERSE";
-    button.presser.setSize(sf::Vector2f(200,50));
-    button.presser.setPosition(sf::Vector2f(500,250));
+    button.presser.setSize(sf::Vector2f(400,100));
+    button.presser.setPosition(sf::Vector2f(500,200));
     sf::RenderWindow Window;
     Window.create(sf::VideoMode(1000, 400), "MOOSE");
     if(button.pressButton(Window) == true) {

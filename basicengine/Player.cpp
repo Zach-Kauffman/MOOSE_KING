@@ -25,6 +25,8 @@ float Player::moveJump(float acceleration) {
 }
 
 float Player::moveLeft(sf::Sprite background, float backgroundPositionx) {
+    mRight = false;
+    mLeft = true;
     MooseSprite.move(-5,0);
     location = MooseSprite.getPosition();
     source.y = Left;
@@ -34,6 +36,8 @@ float Player::moveLeft(sf::Sprite background, float backgroundPositionx) {
 }
 
 float Player::moveRight(sf::Sprite background, float backgroundPositionx) {
+    mRight = true;
+    mLeft = false;
     MooseSprite.move(5,0);
     location = MooseSprite.getPosition();
     source.y = Right;
@@ -65,11 +69,17 @@ void Player::checkCollisions(Platform temp, float acceleration) {
 }
 
 float Player::scrollBackground(sf::Sprite background, float backgroundPositionx) {
-    if (MooseSprite.getPosition().x > (background.getPosition().x + 675)) {
+    if (MooseSprite.getPosition().x > (background.getPosition().x + 630) and mRight == true) {
         backgroundPositionx -= 5;
-    }
-    if (MooseSprite.getPosition().x < background.getPosition().x + 325) {
+        MooseSprite.move(-5,0);
+    } else if (MooseSprite.getPosition().x > (background.getPosition().x + 630) and mLeft == true) {
         backgroundPositionx += 5;
+    }
+    if (MooseSprite.getPosition().x < background.getPosition().x + 325 and mLeft == true) {
+        backgroundPositionx += 5;
+        MooseSprite.move(5,0);
+    } else if (MooseSprite.getPosition().x < background.getPosition().x + 325 and mRight == true) {
+        backgroundPositionx -= 5;
     }
     return backgroundPositionx;
 }
